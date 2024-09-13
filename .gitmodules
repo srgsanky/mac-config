@@ -1,0 +1,18 @@
+[submodule "kickstart.nvim"]
+	path = kickstart.nvim
+	url = https://github.com/srgsanky/kickstart.nvim
+[submodule "aerospace"]
+	path = aerospace
+	url = https://github.com/srgsanky/aerospace
+[submodule "wezterm"]
+	path = wezterm
+	url = https://github.com/srgsanky/wezterm
+[submodule "sketchybar"]
+	path = sketchybar
+	url = https://github.com/srgsanky/sketchybar
+[submodule "tmux"]
+	path = tmux
+	url = https://github.com/srgsanky/tmux
+[submodule "zathura"]
+	path = zathura
+	url = https://github.com/srgsanky/zathura
