@@ -60,6 +60,8 @@ cat "$GITHUB_KEY.pub"
 
 ### Configure individual repo to use github identity
 
+Add to `~/.zshrc`
+
 ```bash
 github_identity() {
   # Identity to use for GitHub commits from this repo.
@@ -102,4 +104,33 @@ github_identity() {
   echo "$name <$email>"
   echo "SSH key: $key"
 }
+
+github_clone() {
+  # Clone a GitHub repo with the dedicated GitHub SSH key.
+  local repo_url="$1"
+  local key="$HOME/.ssh/id_ed25519_github"
+
+  # Require the SSH clone URL.
+  if [[ -z "$repo_url" ]]; then
+    echo "Usage: github_clone git@github.com:OWNER/REPO.git"
+    return 1
+  fi
+
+  # Stop early if the GitHub SSH key has not been created yet.
+  if [[ ! -f "$key" ]]; then
+    echo "Missing key: $key"
+    return 1
+  fi
+
+  # Clone using only the dedicated GitHub key.
+  GIT_SSH_COMMAND="ssh -i $key -o IdentitiesOnly=yes" git clone "$repo_url" || return 1
+
+  # Enter the cloned repo.
+  local repo_dir="${repo_url:t:r}"
+  cd "$repo_dir" || return 1
+
+  # Apply repo-local GitHub identity and SSH key config.
+  github_identity
+}
 ```
+
