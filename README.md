@@ -134,3 +134,10 @@ github_clone() {
 }
 ```
 
+## Remap Caps Lock to Escape
+
+1. Open **System Settings** → **Keyboard**.
+2. Click **Keyboard Shortcuts…** → **Modifier Keys**.
+3. Set the **Caps Lock Key** dropdown to **Escape**.
+4. Click **Done**.
+
